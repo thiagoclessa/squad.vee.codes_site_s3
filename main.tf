@@ -5,7 +5,7 @@ module "site" {
 }
 
 
-module "site" { 
+module "cloadfront" { 
     souce = "./cloudfront " 
      domain = local.config.domain 
    
