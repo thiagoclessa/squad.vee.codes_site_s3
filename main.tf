@@ -7,6 +7,6 @@ module "site" {
 
 module "cloudfront" { 
     source = "./cloudfront" 
-    domain = local.config.domain 
+    domain           = local.config.domain 
    
 } 
