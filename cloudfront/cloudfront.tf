@@ -20,7 +20,7 @@ resource "aws_cloudfront_distribution" "tf" {
     compress = true
     allowed_methods = ["GET", "HEAD"]
     cached_methods = ["GET", "HEAD"]
- #  target_origin_id = var.origin_id
+    target_origin_id = "${var.domain}"
 
     forwarded_values {
       query_string = false
