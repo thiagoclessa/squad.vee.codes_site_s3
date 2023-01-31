@@ -1,2 +1,4 @@
 variable "domain" {
 }
+variable "zoneid" {
+}
