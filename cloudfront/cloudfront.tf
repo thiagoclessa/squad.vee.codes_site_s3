@@ -44,13 +44,13 @@ resource "aws_cloudfront_distribution" "tf" {
 #### ROUTE53 #####  
 
 resource "aws_route53_record" "root_domain" {
-  zone_id = "${aws_route53_zone.main.zone_id}"
+  zone_id = "${var.zoneid}"
   name = "${var.domain}"
   type = "A"
 
   alias {
-    name = "${aws_cloudfront_distribution.cdn.domain_name}"
-    zone_id = "${aws_cloudfront_distribution.cdn.hosted_zone_id}"
+    name = "${aws_cloudfront_distribution.tf.domain_name}"
+    zone_id = "${aws_cloudfront_distribution.tf.hosted_zone_id}"
     evaluate_target_health = false
   }
 }
