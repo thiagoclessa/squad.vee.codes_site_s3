@@ -29,9 +29,11 @@ jobs:
       - name: Terraform Init
         id: init
         run: |
+             terraform workspace new homolog
+             terraform workspace select homolog
              ls -ltrh
              cat main.tf 
-             terraform init -reconfigure
+             terraform init
 
   apply:
     runs-on: ubuntu-latest
