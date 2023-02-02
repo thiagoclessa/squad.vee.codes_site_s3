@@ -1,7 +1,7 @@
 terraform { 
   backend "s3" { 
-    bucket = "backend-squad" 
-    key    = "backend-squad_hml/backend-squad.tfstate" 
+    bucket = "backend-squad/homolog" 
+    key    = "backend-squad.tfstate" 
     region = "us-east-1" 
   }
 }
