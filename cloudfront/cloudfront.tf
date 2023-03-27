@@ -3,6 +3,7 @@ resource "aws_cloudfront_distribution" "tf" {
   origin {
     domain_name = "${var.domain}.s3-website.us-east-1.amazonaws.com"
     origin_id = "${var.domain}"
+    aliases = "${var.domain}"
 
     custom_origin_config {
       http_port = "80"
