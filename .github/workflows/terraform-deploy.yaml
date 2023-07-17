@@ -30,8 +30,6 @@ jobs:
         id: init
         run: |
              terraform init -reconfigure
-             terraform workspace new homolog
-             terraform workspace select homolog
              ls -ltrh
              cat main.tf 
 
