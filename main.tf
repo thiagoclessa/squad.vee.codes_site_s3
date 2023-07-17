@@ -5,8 +5,7 @@ module "site" {
 
 module "certificate" { 
   source = "./certificate" 
-  domain           = local.config.domain 
-  vca = module.certificate.output.vca
+  domain           = local.config.domain
    
 } 
 
