@@ -6,7 +6,7 @@ module "site" {
 module "certificate" { 
   source = "./certificate" 
   domain           = local.config.domain
-   
+  zoneid           = local.config.zoneid
 } 
 
 module "cloudfront" { 
