@@ -71,4 +71,6 @@ jobs:
 #          name: plan-cache
 #         path: plan.cache
       - name: Terraform apply
-        run: terraform apply -input=false -no-color -auto-approve plan.cache
+        run: |
+          terraform init -reconfigure
+          terraform apply -input=false -no-color -auto-approve plan.cache
