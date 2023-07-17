@@ -14,4 +14,5 @@ module "cloudfront" {
   domain           = local.config.domain 
   zoneid           = local.config.zoneid
   vca = module.certificate.output.vca
+  depends_on = [module.certificate]
 } 
