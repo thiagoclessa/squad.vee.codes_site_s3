@@ -37,9 +37,14 @@ resource "aws_cloudfront_distribution" "tf" {
     }
   }
 
+  
   viewer_certificate {
-    cloudfront_default_certificate = true
-    ssl_support_method = "sni-only"
+    cloudfront_default_certificate = false
+
+    minimum_protocol_version = "TLSv1.2_2021"
+    ssl_support_method       = "sni-only"
+
+    acm_certificate_arn = "${var.vca}"
   }
 }
 #### ROUTE53 #####  
