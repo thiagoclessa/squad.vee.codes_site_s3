@@ -62,15 +62,6 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
       - name: Terraform Plan
         id: plan
-        run: |
-          terraform init -reconfigure
-          terraform plan -no-color -out plan.cache 
-#      - name: encrypt cache
-#        run: zip --password "${{ secrets.ZIP_PASSWORD }}" plan.zip plan.cache
-#      - name: "Upload Artifact"
-#        uses: actions/upload-artifact@v2
-#        with:
-#          name: plan-cache
-#         path: plan.cache
+        run: terraform plan -no-color -out plan.cache 
       - name: Terraform apply
         run: terraform apply -input=false -no-color -auto-approve plan.cache
