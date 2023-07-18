@@ -62,7 +62,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
 # Create Route53 Record to CloudFront
 resource "aws_route53_record" "domain_record" {
-  name    = "${var.bucket}${var.route53_zone_domain}"
+  name    = "${var.bucket}.${var.route53_zone_domain}"
   type    = "A"
   zone_id = var.id_zone
 
