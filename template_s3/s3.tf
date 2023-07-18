@@ -3,10 +3,10 @@ resource "aws_s3_bucket" "bucket" {
 
 }
 
-resource "aws_s3_bucket_acl" "bucket_acl" {
-  bucket = aws_s3_bucket.bucket.id
-  acl    = "public"
-}
+#resource "aws_s3_bucket_acl" "bucket_acl" {
+#  bucket = aws_s3_bucket.bucket.id
+#  acl    = "public"
+#}
 
 #resource "aws_s3_bucket_public_access_block" "bucket_public_access" {
 #  bucket = aws_s3_bucket.bucket.id
