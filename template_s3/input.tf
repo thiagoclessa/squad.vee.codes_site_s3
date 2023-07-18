@@ -50,3 +50,6 @@ variable "cloudfront_http_version" {
 variable "id_zone"{
   type    = string
 }
+variable "bucket"{
+  type    = string
+}

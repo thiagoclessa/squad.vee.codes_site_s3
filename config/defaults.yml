@@ -2,3 +2,4 @@
 route53_zone_domain: "test.vkpr.net"
 cdn_domain: "s3-teste.test.vkpr.net"
 id_zone: "Z00652121QOCYJG0NVLJU"
+bucket: "teste_template"

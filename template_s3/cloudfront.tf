@@ -1,5 +1,5 @@
 resource "aws_cloudfront_origin_access_control" "cloudfront_acl" {
-  name = "ACL - ${local.resource_prefix_name}"
+  name = var.bucket
 
   origin_access_control_origin_type = "s3"
   signing_behavior                  = "always"
@@ -65,9 +65,9 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
 # Create Route53 Record to CloudFront
 resource "aws_route53_record" "domain_record" {
-  name    = "${route53_zone_domain}"
+  name    = var.route53_zone_domain
   type    = "A"
-  zone_id = data.aws_route53_zone.domain_zone.zone_id
+  zone_id = var.id_zone
 
   alias {
     name                   = aws_cloudfront_distribution.cloudfront.domain_name

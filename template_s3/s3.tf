@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "bucket" {
-  bucket = "site_teste"
+  bucket = var.bucket
 
 }
 
