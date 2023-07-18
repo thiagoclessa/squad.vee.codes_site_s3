@@ -13,7 +13,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   default_root_object = var.cloudfront_default_root_object
   http_version        = var.cloudfront_http_version
 
-  aliases = local.cdn_domain != "" ? [local.cdn_domain] : local.route53_base_domain != "" ? [local.route53_base_domain] : []
+  aliases = var.cdn_domain
 
   origin {
     origin_id                = aws_s3_bucket.bucket.id
@@ -57,9 +57,6 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     acm_certificate_arn = aws_acm_certificate_validation.certificate_validation.certificate_arn
   }
 
-  tags = {
-    Template  = S3
-  }
 
   depends_on = [
     aws_s3_bucket.bucket

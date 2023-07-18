@@ -1,10 +1,6 @@
 resource "aws_acm_certificate" "certificate" {
   domain_name       = var.route53_zone_domain
   validation_method = "DNS"
-
-  tags = {
-    Template  = S3
-  }
 }
 
 resource "aws_acm_certificate_validation" "certificate_validation" {
