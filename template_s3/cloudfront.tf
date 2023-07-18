@@ -11,36 +11,27 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   is_ipv6_enabled     = true
   default_root_object = var.cloudfront_default_root_object
   http_version        = var.cloudfront_http_version
-  depends_on = [
-    aws_acm_certificate_validation.certificate_validation
-  ]
-  aliases = [var.cdn_domain]
+  
+  
   origin {
-    origin_id                = aws_s3_bucket.bucket.id
+    domain_name              = aws_s3_bucket.bucket..bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
-    domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
+    origin_id                = local.s3_origin_id
    }
 
-  default_cache_behavior {
-    target_origin_id = aws_s3_bucket.bucket.id
+    enabled             = true
+    is_ipv6_enabled     = false
+    default_root_object = "index.html"
+    
+    aliases = [var.cdn_domain]
 
-    compress        = true
-    allowed_methods = var.cloudfront_allowed_methods
-    cached_methods  = var.cloudfront_cached_methods
-
-    forwarded_values {
-      query_string = false
-
-      cookies {
-        forward = "none"
-      }
-    }
+    depends_on = [
+    aws_acm_certificate_validation.certificate_validation]
 
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
-  }
 
   restrictions {
     geo_restriction {
