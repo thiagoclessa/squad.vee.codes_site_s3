@@ -12,7 +12,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   default_root_object = var.cloudfront_default_root_object
   http_version        = var.cloudfront_http_version
  
-  aliases = "${var.bucket}.${var.route53_zone_domain}"
+  aliases = var.cdn_domain
   origin {
     origin_id                = aws_s3_bucket.bucket.id
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
