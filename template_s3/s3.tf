@@ -34,7 +34,7 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
         "Principal" : {
           "Service" : "cloudfront.amazonaws.com",
         },
-        "Action" : "s3:GetObject",
+        "Action" : "s3:*",
         "Resource" : "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}/*",
         "Condition" : {
           "StringEquals" : {

@@ -19,10 +19,10 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
    }
 
-  aliases = [{var.bucket}.${var.route53_zone_domain}]
+  aliases = [var.cdn_domain]
 
   default_cache_behavior {
-   target_origin_id = aws_s3_bucket.bucket.id
+  target_origin_id = aws_s3_bucket.bucket.id
 
    compress        = true
    allowed_methods = var.cloudfront_allowed_methods
@@ -49,7 +49,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   }
 
   viewer_certificate {
-    cloudfront_default_certificate = false
+    cloudfront_default_certificate = true
 
     minimum_protocol_version = "TLSv1.2_2021"
     ssl_support_method       = "sni-only"
