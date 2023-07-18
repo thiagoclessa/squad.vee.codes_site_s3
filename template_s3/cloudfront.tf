@@ -57,11 +57,6 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
     acm_certificate_arn = aws_acm_certificate_validation.certificate_validation.certificate_arn
   }
-
-
-  depends_on = [
-    aws_acm_certificate_validation.certificate_validation
-  ]
 }
 
 # Create Route53 Record to CloudFront
