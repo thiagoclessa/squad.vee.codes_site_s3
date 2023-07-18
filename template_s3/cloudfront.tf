@@ -17,6 +17,9 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     origin_id                = aws_s3_bucket.bucket.id
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
     domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
+      depends_on = [
+    certificate_validation
+  ]
   }
 
   default_cache_behavior {
@@ -57,7 +60,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
 
   depends_on = [
-    aws_s3_bucket.bucket
+    aws_acm_certificate_validation.certificate_validation
   ]
 }
 
