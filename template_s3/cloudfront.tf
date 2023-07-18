@@ -17,8 +17,8 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     origin_id                = aws_s3_bucket.bucket.id
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
     domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
-      depends_on = [
-    certificate_validation
+    depends_on = [
+    aws_acm_certificate_validation.certificate_validation
   ]
   }
 
@@ -57,6 +57,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
     acm_certificate_arn = aws_acm_certificate_validation.certificate_validation.certificate_arn
   }
+
 }
 
 # Create Route53 Record to CloudFront
