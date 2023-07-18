@@ -19,7 +19,7 @@ resource "aws_cloudfront_distribution" "cloudfront" {
     domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
    }
 
-  aliases = [var.cdn_domain]
+  aliases = [{var.bucket}.${var.route53_zone_domain}]
 
   default_cache_behavior {
    target_origin_id = aws_s3_bucket.bucket.id
