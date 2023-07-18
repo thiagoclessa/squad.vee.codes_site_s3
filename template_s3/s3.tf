@@ -20,17 +20,22 @@ resource "aws_s3_bucket_public_access_block" "bucket_public_access" {
 resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = aws_s3_bucket.bucket.id
 
-  policy = jsonencode({
-   {
-    "Version": "2012-10-17",
-    "Statement": [
-    "Action" : "s3:*",
-    "Effect": "Allow",
-    "Resource" : "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}/*",
-    "Principal": "*"
-      }
-    ]
-  })
+  policy = <<EOF
+    {
+        "Version": "2012-10-17",
+        "Id": "Policy1663162260738",
+        "Statement": [
+            {
+                "Sid": "Stmt1663162256001",
+                "Effect": "Allow",
+                "Principal": "*",
+                "Action": "s3:GetObject",
+                "Resource": "arn:aws:s3:::${var.bucket}/*"
+            }
+        ]
+    }
+
+  EOF
 
   depends_on = [
     aws_s3_bucket.bucket
