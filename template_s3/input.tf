@@ -46,3 +46,7 @@ variable "cloudfront_http_version" {
   default = "http2"
   type    = string
 }
+
+variable "id_zone"{
+  type    = string
+}

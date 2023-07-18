@@ -1,3 +1,4 @@
 ---
 route53_zone_domain: "test.vkpr.net"
 cdn_domain: "s3-teste.test.vkpr.net"
+zone_id: "Z00652121QOCYJG0NVLJU"
