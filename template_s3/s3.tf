@@ -2,7 +2,8 @@ resource "aws_s3_bucket" "bucket" {
   bucket = "${local.resource_prefix_name}-bucket-${data.aws_caller_identity.current.account_id}"
 
   tags = {
-    Template  = s3
+    Template  = S3,
+    Name      = site
   }
 }
 
