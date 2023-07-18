@@ -21,21 +21,14 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
   bucket = aws_s3_bucket.bucket.id
 
   policy = jsonencode({
-    "Version" : "2008-10-17",
-    "Statement" : [
-      {
-        "Sid" : "AllowCloudFrontServicePrincipalReadOnly",
-        "Effect" : "Allow",
-        "Principal" : {
-          "Service" : "cloudfront.amazonaws.com",
-        },
-        "Action" : "s3:GetObject",
-        "Resource" : "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}/*",
-        "Condition" : {
-          "StringEquals" : {
-            "aws:SourceArn" : aws_cloudfront_distribution.cloudfront.arn
-          }
-        }
+   {
+  
+  "Version": "2012-10-17",
+  "Statement": [
+    "Action" : "s3:*",
+    "Effect": "Allow",
+    "Resource" : "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}/*",
+    "Principal": "*"
       }
     ]
   })
