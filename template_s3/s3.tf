@@ -22,9 +22,8 @@ resource "aws_s3_bucket_policy" "bucket_policy" {
 
   policy = jsonencode({
    {
-  
-  "Version": "2012-10-17",
-  "Statement": [
+    "Version": "2012-10-17",
+    "Statement": [
     "Action" : "s3:*",
     "Effect": "Allow",
     "Resource" : "arn:aws:s3:::${aws_s3_bucket.bucket.bucket}/*",
