@@ -22,17 +22,17 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   aliases = [var.cdn_domain]
 
   default_cache_behavior {
-    target_origin_id = aws_s3_bucket.bucket.id
+   target_origin_id = aws_s3_bucket.bucket.id
 
-    compress        = true
-    allowed_methods = var.cloudfront_allowed_methods
-    cached_methods  = var.cloudfront_cached_methods
+   compress        = true
+   allowed_methods = var.cloudfront_allowed_methods
+   cached_methods  = var.cloudfront_cached_methods
 
-    forwarded_values {
-      query_string = false
+   forwarded_values {
+     query_string = false
 
-      cookies {
-        forward = "none"
+     cookies {
+       forward = "none"
       }
     }
 
