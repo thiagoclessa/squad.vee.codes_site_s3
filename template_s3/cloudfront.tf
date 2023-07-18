@@ -9,7 +9,6 @@ resource "aws_cloudfront_origin_access_control" "cloudfront_acl" {
 resource "aws_cloudfront_distribution" "cloudfront" {
   enabled             = true
   is_ipv6_enabled     = true
-  is_ipv6_enabled     = true
   comment             = "Some comment"
   default_root_object = "index.html"
   http_version        = var.cloudfront_http_version
