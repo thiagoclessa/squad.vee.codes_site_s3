@@ -14,13 +14,13 @@ resource "aws_cloudfront_distribution" "cloudfront" {
   
   
   origin {
-    domain_name              = aws_s3_bucket.bucket..bucket_regional_domain_name
+    domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
     origin_id                = local.s3_origin_id
    }
 
     enabled             = true
-    is_ipv6_enabled     = false
+    is_ipv6_enabled     = true
     default_root_object = "index.html"
     
     aliases = [var.cdn_domain]
