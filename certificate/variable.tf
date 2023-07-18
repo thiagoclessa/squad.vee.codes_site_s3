@@ -1,4 +1,0 @@
-variable "domain" {
-}
-variable "zoneid" {
-}

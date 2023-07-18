@@ -1,18 +1,5 @@
-module "site" {
-  source  = "./site_s3"
-  domain              = local.config.domain
+module "template_s3" {
+  source  = "./template_s3"
+  route53_zone_domain              = local.config.domain
+  cdn_domain                       = local.config.cdn
 }
-
-module "certificate" { 
-  source = "./certificate" 
-  domain           = local.config.domain
-  zoneid           = local.config.zoneid
-} 
-
-module "cloudfront" { 
-  source = "./cloudfront" 
-  domain           = local.config.domain 
-  zoneid           = local.config.zoneid
-  vca = module.certificate.output.vca
-  depends_on = [module.certificate]
-} 
