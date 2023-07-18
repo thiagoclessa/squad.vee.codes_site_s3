@@ -12,7 +12,7 @@ resource "aws_acm_certificate_validation" "certificate_validation" {
   ]
 
   timeouts {
-    create = "10m"
+    create = "20m"
   }
 }
 
