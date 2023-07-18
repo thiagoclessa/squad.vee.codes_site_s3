@@ -9,29 +9,39 @@ resource "aws_cloudfront_origin_access_control" "cloudfront_acl" {
 resource "aws_cloudfront_distribution" "cloudfront" {
   enabled             = true
   is_ipv6_enabled     = true
-  default_root_object = var.cloudfront_default_root_object
+  is_ipv6_enabled     = true
+  comment             = "Some comment"
+  default_root_object = "index.html"
   http_version        = var.cloudfront_http_version
-  
-  
+
   origin {
-    domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
+    origin_id                = aws_s3_bucket.bucket.id
     origin_access_control_id = aws_cloudfront_origin_access_control.cloudfront_acl.id
-    origin_id                = local.s3_origin_id
+    domain_name              = aws_s3_bucket.bucket.bucket_regional_domain_name
    }
 
-    enabled             = true
-    is_ipv6_enabled     = true
-    default_root_object = "index.html"
-    
-    aliases = [var.cdn_domain]
+  aliases = [var.cdn_domain]
 
-    depends_on = [
-    aws_acm_certificate_validation.certificate_validation]
+  default_cache_behavior {
+    target_origin_id = aws_s3_bucket.bucket.id
+
+    compress        = true
+    allowed_methods = var.cloudfront_allowed_methods
+    cached_methods  = var.cloudfront_cached_methods
+
+    forwarded_values {
+      query_string = false
+
+      cookies {
+        forward = "none"
+      }
+    }
 
     viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
+  }
 
   restrictions {
     geo_restriction {
@@ -47,7 +57,9 @@ resource "aws_cloudfront_distribution" "cloudfront" {
 
     acm_certificate_arn = aws_acm_certificate_validation.certificate_validation.certificate_arn
   }
-
+    depends_on = [
+    aws_acm_certificate_validation.certificate_validation
+  ]
 }
 
 # Create Route53 Record to CloudFront
